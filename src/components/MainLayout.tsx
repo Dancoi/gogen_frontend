@@ -85,6 +85,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 					display: "flex",
 					flexDirection: "column",
 					justifyContent: "space-between",
+					position: "sticky",
 				}}
 			>
 				<div
