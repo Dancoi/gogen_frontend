@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import {Input, Button, Form} from 'antd';
-import MainLayout from "../../components/MainLayout.tsx";
+import { useNavigate } from 'react-router-dom';
+import MainLayout from "../../components/MainLayout";
+import TokenManager from "../../components/TokenManager";
+import { useAuth } from '../../context/AuthContext';
+import { authAPI } from '../../services/apiService';
 import "./UserProfile.css";
 import ProfileGoGen from "../../assets/ProfileGoGen.svg";
 import CardBackground from "../../assets/MainGoGen.svg";
@@ -9,17 +13,18 @@ import CardComponent from "../../components/CardComponent.tsx";
 interface FormData {
     name: string;
     email: string;
-    github: string;
 }
 
 const UserProfile: React.FC = () => {
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
+    const [logoutLoading, setLogoutLoading] = useState(false);
+    const navigate = useNavigate();
+    const { user, logout, setUser } = useAuth();
 
     const [formData, setFormData] = useState<FormData>({
-        name: 'GOGEN',
-        email: 'gogen2026example.com',
-        github: 'gogen'
+        name: user?.username || 'GOGEN',
+        email: user?.email || 'gogen2026@example.com',
     });
 
     const handleFinish = (values: FormData) => {
@@ -28,13 +33,29 @@ const UserProfile: React.FC = () => {
 
         setTimeout(() => {
             setFormData(values);
+            // Обновляем user в context
+            if (user) {
+                setUser({ ...user, username: values.name });
+            }
             alert('Изменения сохранены!');
             setLoading(false);
         }, 500);
     };
 
-    const handleFinishFailed = (errorInfo: unknown) => {
-        console.log('Ошибка валидации:', errorInfo);
+    const handleLogout = async () => {
+        setLogoutLoading(true);
+        try {
+            await authAPI.logout();
+            logout();
+            navigate('/');
+        } catch (error) {
+            console.error('Ошибка при выходе:', error);
+            // Всё равно логаутим локально даже если сервер ошибку вернул
+            logout();
+            navigate('/');
+        } finally {
+            setLogoutLoading(false);
+        }
     };
 
     return (
@@ -49,26 +70,27 @@ const UserProfile: React.FC = () => {
                 </div>
 
                 <div className="content-wrapper">
-                    <div style={{ display: "flex", flexDirection: "column", gap: "20px", alignItems: "center" }}>
-                        <div className="circle-element"></div>
-                        <CardComponent
-                            size="cover-square"
-                            background={CardBackground}
-                            line1="PRO подписка активна"
-                            bottomButtonText="Сменить тариф"
-                            onBottomClick={() => console.log("Клик!")}
-                        />
-                    </div>
+                    <div className="profile-section">
+                        <div style={{ display: "flex", flexDirection: "column", gap: "20px", alignItems: "center" }}>
+                            <div className="circle-element"></div>
+                            <CardComponent
+                                size="cover-square"
+                                background={CardBackground}
+                                line1="PRO подписка активна"
+                                bottomButtonText="Сменить тариф"
+                                onBottomClick={() => console.log("Клик!")}
+                            />
+                        </div>
 
-                    <div className="main-form">
-                        <div className="form-card">
+                        <div className="main-form">
+                            <div className="form-card">
+                            <h2 style={{ marginBottom: 24, color: 'var(--text-h)' }}>Профиль</h2>
                             <Form
                                 form={form}
                                 name="profile-form"
                                 layout="vertical"
                                 initialValues={formData}
                                 onFinish={handleFinish}
-                                onFinishFailed={handleFinishFailed}
                                 autoComplete="off"
                             >
                                 <Form.Item
@@ -101,6 +123,7 @@ const UserProfile: React.FC = () => {
                                         type="email"
                                         placeholder="example@mail.com"
                                         size="large"
+                                        disabled
                                     />
                                 </Form.Item>
 
@@ -116,7 +139,23 @@ const UserProfile: React.FC = () => {
                                     </Button>
                                 </Form.Item>
                             </Form>
+
+                            <Button
+                                danger
+                                size="large"
+                                loading={logoutLoading}
+                                onClick={handleLogout}
+                                style={{ width: '100%', marginTop: 16 }}
+                            >
+                                Выход
+                            </Button>
                         </div>
+                        </div>
+                    </div>
+
+                    {/* Token Manager Block */}
+                    <div className="token-manager-section">
+                        <TokenManager />
                     </div>
                 </div>
             </div>
