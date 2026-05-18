@@ -1,0 +1,30 @@
+[
+	{
+		"version": "6.7.2 03.04.26",
+		"changes": [
+			"- System audio capture for desktop sharing on macOS.",
+			"- Split voice and audio playback speeds.",
+			"- Unread media dot for voice messages in dialog list.",
+			"- Add 'x' button to AI Tools promo toast.",
+			"- Fix long forward messages preview in box."
+		]
+	},
+	{
+		"version": "6.7.1 01.04.26",
+		"changes": [
+			"- System audio capture for desktop sharing on macOS.",
+			"- Split voice and audio playback speeds.",
+			"- Unread media dot for voice messages in dialog list.",
+			"- Add 'x' button to AI Tools promo toast."
+		]
+	},
+	{
+		"version": "6.7.0 01.04.26",
+		"changes": [
+			"- System audio capture for desktop sharing on macOS.",
+			"- Split voice and audio playback speeds.",
+			"- Unread media dot for voice messages in dialog list.",
+			"- Add 'x' button to AI Tools promo toast."
+		]
+	}
+]

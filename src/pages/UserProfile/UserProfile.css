@@ -1,0 +1,242 @@
+body {
+    overflow-x: hidden;
+}
+
+.profile-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.svg-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.background-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 100px 0;
+    box-sizing: border-box;
+}
+
+/* Круглый элемент */
+.circle-element {
+    width: 350px;
+    height: 350px;
+    background: #FFFFFF;
+    border: 5px solid #00B3C4;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* Основная форма */
+.main-form {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+}
+
+.form-card {
+    background: #FFFFFF;
+    border: 4px solid #00B3C4;
+    border-radius: 36px;
+    padding: 40px 50px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Стили для Form.Item */
+.form-field {
+    margin-bottom: 40px;
+}
+
+.form-field .ant-form-item-label > label {
+    font-family: 'Amiko', sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 42px;
+    letter-spacing: -2px;
+    color: #000000;
+    height: auto;
+}
+
+.form-field .ant-form-item-label {
+    padding-bottom: 12px;
+}
+
+.form-field .ant-input {
+    height: 80px !important;
+    border-radius: 25px !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-size: 24px !important;
+    line-height: 31px !important;
+    padding: 0 25px !important;
+}
+
+.form-field .ant-input:focus,
+.form-field .ant-input-focused {
+    border-color: #00B3C4 !important;
+    box-shadow: 0 0 0 2px rgba(0, 179, 196, 0.1) !important;
+}
+
+.form-field .ant-input:hover {
+    border-color: #00B3C4 !important;
+}
+
+.form-field .ant-form-item-explain-error {
+    font-size: 16px;
+    margin-top: 8px;
+    color: #ff4d4f;
+}
+
+.form-field .ant-input-status-error {
+    border-color: #ff4d4f !important;
+}
+
+.save-btn {
+    width: 100% !important;
+    max-width: 400px;
+    height: 80px !important;
+    background: #000000 !important;
+    border-radius: 25px !important;
+    font-family: 'Amiko', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 32px !important;
+    line-height: 42px !important;
+    letter-spacing: -2px !important;
+    border: none !important;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 0 auto;
+    display: block;
+}
+
+.save-btn:hover:not(:disabled) {
+    background: #1a1a1a !important;
+    transform: translateY(-2px);
+}
+
+.save-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 1600px) {
+    .content-wrapper {
+        gap: 170px;
+    }
+
+    .circle-element {
+        width: 280px;
+        height: 280px;
+    }
+
+    .form-card {
+        padding: 30px 40px;
+    }
+
+    .form-field .ant-form-item-label > label {
+        font-size: 28px;
+        line-height: 38px;
+    }
+
+    .form-field .ant-input {
+        height: 70px !important;
+        font-size: 22px !important;
+    }
+
+    .save-btn {
+        height: 70px !important;
+        font-size: 28px !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .circle-element {
+        width: 250px;
+        height: 250px;
+    }
+
+    .main-form {
+        width: 100%;
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: 60px 20px;
+    }
+
+    .form-card {
+        padding: 20px;
+    }
+
+    .form-field {
+        margin-bottom: 25px;
+    }
+
+    .form-field .ant-form-item-label > label {
+        font-size: 22px;
+        line-height: 30px;
+    }
+
+    .form-field .ant-input {
+        height: 55px !important;
+        font-size: 18px !important;
+        padding: 0 15px !important;
+    }
+
+    .save-btn {
+        height: 55px !important;
+        font-size: 22px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .circle-element {
+        width: 180px;
+        height: 180px;
+    }
+
+    .form-field .ant-form-item-label > label {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .form-field .ant-input {
+        height: 45px !important;
+        font-size: 16px !important;
+    }
+
+    .save-btn {
+        height: 45px !important;
+        font-size: 18px !important;
+    }
+}
