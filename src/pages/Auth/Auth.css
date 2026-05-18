@@ -62,36 +62,6 @@
 	text-decoration: underline;
 }
 
-/* Ant Design компоненты кастомизация */
-:global(.auth-form .ant-form-item-label > label) {
-	color: var(--text-h);
-	font-weight: 500;
-}
-
-:global(.auth-form .ant-input),
-:global(.auth-form .ant-input-password input) {
-	background: var(--code-bg);
-	border: 1px solid var(--border);
-	color: var(--text-h);
-	transition: all 0.3s ease;
-}
-
-:global(.auth-form .ant-input:hover),
-:global(.auth-form .ant-input-password input:hover) {
-	border-color: var(--accent);
-}
-
-:global(.auth-form .ant-input:focus),
-:global(.auth-form .ant-input-password input:focus) {
-	border-color: var(--accent);
-	box-shadow: 0 0 0 2px var(--accent-bg);
-}
-
-:global(.auth-form .ant-input::placeholder),
-:global(.auth-form .ant-input-password input::placeholder) {
-	color: var(--text);
-}
-
 @media (max-width: 768px) {
 	.auth-card {
 		max-width: 100%;

@@ -1,6 +1,9 @@
-import { Layout, Menu } from "antd";
+import { Button, Layout, Menu } from "antd";
 import type React from "react";
+import { useEffect, useRef } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../assets/Logo.png";
+import { useAuth } from "../context/AuthContext.tsx";
 
 const { Header, Footer, Content } = Layout;
 
@@ -16,6 +19,11 @@ interface MainLayoutProps {
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+	const { isAuthenticated, logout } = useAuth();
+	const navigate = useNavigate();
+	const location = useLocation();
+	const hasScrolledRef = useRef(false);
+
 	const navItems = [
 		{ key: "about", label: "О нас", id: "about-section" },
 		{ key: "services", label: "Наши услуги", id: "services-section" },
@@ -24,7 +32,33 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 		{ key: "contacts", label: "Контакты", id: "footer-contact" },
 	];
 
-	const handleNavigation = (id: string) => () => scrollToSection(id);
+	const handleNavigation = (id: string) => () => {
+		if (location.pathname !== "/") {
+			navigate("/", { state: { scrollTo: id } });
+		} else {
+			scrollToSection(id);
+		}
+	};
+
+	useEffect(() => {
+		const scrollTarget = location.state?.scrollTo;
+		if (location.pathname === "/" && scrollTarget && !hasScrolledRef.current) {
+			const timer = setTimeout(() => {
+				scrollToSection(scrollTarget);
+				hasScrolledRef.current = true;
+				window.history.replaceState({}, document.title);
+			}, 100);
+			return () => clearTimeout(timer);
+		}
+		if (location.pathname !== "/") {
+			hasScrolledRef.current = false;
+		}
+	}, [location]);
+
+	const handleLogout = () => {
+		logout();
+		navigate("/");
+	};
 
 	return (
 		<Layout style={{ minHeight: "100vh", position: "relative" }}>
@@ -72,6 +106,43 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 						</Menu.Item>
 					))}
 				</Menu>
+				<div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+					{!isAuthenticated ? (
+						<>
+							<Link to="/login">
+								<Button type="text">Вход</Button>
+							</Link>
+							<Link to="/register">
+								<Button
+									type="primary"
+									style={{
+										backgroundColor: "rgb(0, 179, 196)",
+										borderColor: "rgb(0, 179, 196)",
+									}}
+								>
+									Регистрация
+								</Button>
+							</Link>
+						</>
+					) : (
+						<>
+							<Link to="/profile">
+								<Button
+									type="primary"
+									style={{
+										backgroundColor: "rgb(0, 179, 196)",
+										borderColor: "rgb(0, 179, 196)",
+									}}
+								>
+									Мой профиль
+								</Button>
+							</Link>
+							<Button type="text" onClick={handleLogout}>
+								Выйти
+							</Button>
+						</>
+					)}
+				</div>
 			</Header>
 
 			<Content style={{ padding: "25px 182px" }}>{children}</Content>

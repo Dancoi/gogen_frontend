@@ -16,17 +16,17 @@ interface CardComponentProps {
 }
 
 export const CardComponent: React.FC<CardComponentProps> = ({
-																size,
-																background,
-																line1,
-																line2,
-																line3,
-																bottomButtonText = "Подробнее",
-																onBottomClick,
-																topButtonText = "⋯",
-																onTopClick,
-																topLeftContent,
-															}) => {
+	size,
+	background,
+	line1,
+	line2,
+	line3,
+	bottomButtonText = "Подробнее",
+	onBottomClick,
+	topButtonText = "⋯",
+	onTopClick,
+	topLeftContent,
+}) => {
 	const isWide = size === "wide";
 	const isCoverSquare = size === "cover-square";
 
@@ -93,7 +93,7 @@ export const CardComponent: React.FC<CardComponentProps> = ({
 		border: "none",
 		display: "flex",
 		justifyContent: "space-between",
-		alignItems: "center"
+		alignItems: "center",
 	};
 
 	if (isCoverSquare) {
@@ -106,7 +106,7 @@ export const CardComponent: React.FC<CardComponentProps> = ({
 					overflow: "hidden",
 					boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
 					transition: "transform 0.2s, box-shadow 0.2s",
-					border: "none"
+					border: "none",
 				}}
 				styles={{
 					body: {
@@ -114,8 +114,8 @@ export const CardComponent: React.FC<CardComponentProps> = ({
 						padding: "16px",
 						display: "flex",
 						flexDirection: "column",
-						justifyContent: "space-between"
-					}
+						justifyContent: "space-between",
+					},
 				}}
 				cover={
 					<img
@@ -124,7 +124,7 @@ export const CardComponent: React.FC<CardComponentProps> = ({
 						style={{
 							width: "100%",
 							height: "100px",
-							objectFit: "cover"
+							objectFit: "cover",
 						}}
 					/>
 				}

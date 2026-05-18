@@ -1,30 +1,52 @@
 [
 	{
-		"version": "6.7.2 03.04.26",
+		"version": "2.0.0 01.04.26",
 		"changes": [
-			"- System audio capture for desktop sharing on macOS.",
-			"- Split voice and audio playback speeds.",
-			"- Unread media dot for voice messages in dialog list.",
-			"- Add 'x' button to AI Tools promo toast.",
-			"- Fix long forward messages preview in box."
+			"- **Крупное обновление:** поддержка GitHub Actions наряду с GitLab CI.",
+			"- Web-интерфейс для загрузки репозитория и просмотра сгенерированных файлов.",
+			"- Интеграция с GitLab и GitHub через OAuth (токены не требуются).",
+			"- Автоматическое создание Merge Request / Pull Request с пайплайном.",
+			"- Плагин для VS Code (генерация одной командой из редактора)."
 		]
 	},
 	{
-		"version": "6.7.1 01.04.26",
+		"version": "1.3.0 10.03.26",
 		"changes": [
-			"- System audio capture for desktop sharing on macOS.",
-			"- Split voice and audio playback speeds.",
-			"- Unread media dot for voice messages in dialog list.",
-			"- Add 'x' button to AI Tools promo toast."
+			"- Экспериментальная поддержка Java / Gradle (только базовые проекты).",
+			"- Добавлена команда `gogen init` для создания конфигурационного файла .gogen.yaml.",
+			"- Возможность кастомизации шаблонов Dockerfile через пользовательские файлы.",
+			"- Ускорение анализа монорепозиториев за счёт параллельной обработки проектов.",
+			"- Исправлена редкая ошибка с race condition при клонировании через HTTP."
 		]
 	},
 	{
-		"version": "6.7.0 01.04.26",
+		"version": "1.2.0 20.02.26",
 		"changes": [
-			"- System audio capture for desktop sharing on macOS.",
-			"- Split voice and audio playback speeds.",
-			"- Unread media dot for voice messages in dialog list.",
-			"- Add 'x' button to AI Tools promo toast."
+			"- Генерация docker-compose.yml для локального запуска нескольких сервисов.",
+			"- Добавлена поддержка .dockerignore.",
+			"- Валидация сгенерированного YAML перед записью.",
+			"- Улучшена обработка больших репозиториев (оптимизация сканирования).",
+			"- Исправлено некорректное определение версии Go при использовании go.work."
+		]
+	},
+	{
+		"version": "1.1.0 05.02.26",
+		"changes": [
+			"- Добавлена поддержка Python (определение по requirements.txt / setup.py).",
+			"- Генерация стадии `test` только при наличии тестов (устранена ложная пустая стадия).",
+			"- Опция `--output` для указания директории сохранения файлов.",
+			"- Логирование прогресса с подробным выводом.",
+			"- Исправлена ошибка определения версии Python (теперь учитывается runtime.txt)."
+		]
+	},
+	{
+		"version": "1.0.0 15.01.26",
+		"changes": [
+			"- MVP: генерация .gitlab-ci.yml и Dockerfile для Go и Node.js проектов.",
+			"- Поддержка монорепозиториев (обнаружение нескольких проектов).",
+			"- Автоматическое определение системы сборки (Go, npm, yarn, pnpm).",
+			"- CLI команда `gogen <url>` без дополнительных флагов.",
+			"- Обработка ошибок (неверный URL, отсутствие Git, нет поддерживаемых языков)."
 		]
 	}
 ]
