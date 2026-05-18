@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Input, Button, Form } from 'antd';
+import {Input, Button, Form} from 'antd';
 import MainLayout from "../../components/MainLayout.tsx";
 import "./UserProfile.css";
 import ProfileGoGen from "../../assets/ProfileGoGen.svg";
+import CardBackground from "../../assets/MainGoGen.svg";
+import CardComponent from "../../components/CardComponent.tsx";
 
 interface FormData {
     name: string;
@@ -47,7 +49,16 @@ const UserProfile: React.FC = () => {
                 </div>
 
                 <div className="content-wrapper">
-                    <div className="circle-element"></div>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "20px", alignItems: "center" }}>
+                        <div className="circle-element"></div>
+                        <CardComponent
+                            size="cover-square"
+                            background={CardBackground}
+                            line1="PRO подписка активна"
+                            bottomButtonText="Сменить тариф"
+                            onBottomClick={() => console.log("Клик!")}
+                        />
+                    </div>
 
                     <div className="main-form">
                         <div className="form-card">
@@ -90,23 +101,6 @@ const UserProfile: React.FC = () => {
                                         type="email"
                                         placeholder="example@mail.com"
                                         size="large"
-                                    />
-                                </Form.Item>
-
-                                <Form.Item
-                                    label="GitHub:"
-                                    name="github"
-                                    rules={[
-                                        { required: true, message: 'Пожалуйста, введите GitHub username' },
-                                        { pattern: /^[a-zA-Z0-9-]+$/, message: 'Username может содержать только буквы, цифры и дефис' }
-                                    ]}
-                                    className="form-field"
-                                >
-                                    <Input
-                                        type="text"
-                                        placeholder="username"
-                                        size="large"
-                                        prefix="@"
                                     />
                                 </Form.Item>
 
