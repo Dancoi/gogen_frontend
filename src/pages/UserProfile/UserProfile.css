@@ -1,242 +1,186 @@
-body {
-    overflow-x: hidden;
-}
-
 .profile-container {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
+	position: relative;
+	min-height: 100vh;
+	padding: 40px 24px;
+	background: linear-gradient(135deg, #f5f7fc 0%, #eef2f8 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .svg-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 0;
-    overflow: hidden;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: 0;
+	overflow: hidden;
 }
 
 .background-svg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 .content-wrapper {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 60px;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 100px 0;
-    box-sizing: border-box;
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
 }
 
-/* Круглый элемент */
+.profile-section {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 32px;
+	justify-content: center;
+}
+
+.profile-section > div:first-child {
+	flex: 1;
+	min-width: 260px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 24px;
+}
+
 .circle-element {
-    width: 350px;
-    height: 350px;
-    background: #FFFFFF;
-    border: 5px solid #00B3C4;
-    border-radius: 50%;
-    flex-shrink: 0;
+	width: 160px;
+	height: 160px;
+	border-radius: 50%;
+	background-color: #f5f5f5;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	overflow: hidden;
+	transition: all 0.2s;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	border: 3px solid white;
 }
 
-/* Основная форма */
+.circle-element .anticon {
+	vertical-align: middle;
+}
+
 .main-form {
-    flex: 1;
-    min-width: 0;
-    width: 100%;
+	flex: 2;
+	min-width: 320px;
 }
 
 .form-card {
-    background: #FFFFFF;
-    border: 4px solid #00B3C4;
-    border-radius: 36px;
-    padding: 40px 50px;
-    width: 100%;
-    box-sizing: border-box;
+	background: white;
+	border-radius: 32px;
+	padding: 32px 28px;
+	box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.15);
+	backdrop-filter: blur(2px);
+	transition: transform 0.2s ease;
 }
 
-/* Стили для Form.Item */
+.form-card h2 {
+	font-size: 28px;
+	font-weight: 600;
+	margin-bottom: 28px;
+	color: #1a2c3e;
+	letter-spacing: -0.3px;
+	border-left: 5px solid #00b3c4;
+	padding-left: 18px;
+}
+
 .form-field {
-    margin-bottom: 40px;
+	margin-bottom: 24px;
 }
 
-.form-field .ant-form-item-label > label {
-    font-family: 'Amiko', sans-serif;
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 42px;
-    letter-spacing: -2px;
-    color: #000000;
-    height: auto;
+.form-field label {
+	font-weight: 500;
+	color: #3a546d;
+	margin-bottom: 8px;
+	display: inline-block;
 }
 
-.form-field .ant-form-item-label {
-    padding-bottom: 12px;
+.form-card input {
+	border-radius: 20px;
+	border: 1px solid #e0e8f0;
+	padding: 12px 18px;
+	transition: all 0.2s;
+	background-color: #fefefe;
 }
 
-.form-field .ant-input {
-    height: 80px !important;
-    border-radius: 25px !important;
-    font-family: 'Space Grotesk', sans-serif !important;
-    font-size: 24px !important;
-    line-height: 31px !important;
-    padding: 0 25px !important;
+.form-card input:hover,
+.form-card input:focus {
+	border-color: #00b3c4;
+	box-shadow: 0 0 0 3px rgba(0, 179, 196, 0.2);
+	outline: none;
 }
 
-.form-field .ant-input:focus,
-.form-field .ant-input-focused {
-    border-color: #00B3C4 !important;
-    box-shadow: 0 0 0 2px rgba(0, 179, 196, 0.1) !important;
-}
-
-.form-field .ant-input:hover {
-    border-color: #00B3C4 !important;
-}
-
-.form-field .ant-form-item-explain-error {
-    font-size: 16px;
-    margin-top: 8px;
-    color: #ff4d4f;
-}
-
-.form-field .ant-input-status-error {
-    border-color: #ff4d4f !important;
+.form-card input:disabled {
+	background-color: #f5f7fa;
+	color: #7f8c8d;
+	cursor: not-allowed;
 }
 
 .save-btn {
-    width: 100% !important;
-    max-width: 400px;
-    height: 80px !important;
-    background: #000000 !important;
-    border-radius: 25px !important;
-    font-family: 'Amiko', sans-serif !important;
-    font-weight: 600 !important;
-    font-size: 32px !important;
-    line-height: 42px !important;
-    letter-spacing: -2px !important;
-    border: none !important;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin: 0 auto;
-    display: block;
+	background: linear-gradient(95deg, #00b3c4 0%, #008b9c 100%);
+	border: none;
+	border-radius: 40px;
+	font-weight: 600;
+	font-size: 16px;
+	height: 48px;
+	padding: 0 24px;
+	width: 100%;
+	transition: all 0.2s;
+	box-shadow: 0 8px 18px rgba(0, 179, 196, 0.3);
 }
 
-.save-btn:hover:not(:disabled) {
-    background: #1a1a1a !important;
-    transform: translateY(-2px);
+.save-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 12px 22px rgba(0, 179, 196, 0.4);
+	background: linear-gradient(95deg, #00cadb 0%, #009eb0 100%);
 }
 
-.save-btn:active {
-    transform: translateY(0);
+.form-card .ant-btn-dangerous {
+	border-radius: 40px;
+	height: 48px;
+	font-weight: 500;
+	border: none;
+	background-color: #fff0f0;
+	color: #e5484d;
+	transition: all 0.2s;
 }
 
-@media (max-width: 1600px) {
-    .content-wrapper {
-        gap: 170px;
-    }
-
-    .circle-element {
-        width: 280px;
-        height: 280px;
-    }
-
-    .form-card {
-        padding: 30px 40px;
-    }
-
-    .form-field .ant-form-item-label > label {
-        font-size: 28px;
-        line-height: 38px;
-    }
-
-    .form-field .ant-input {
-        height: 70px !important;
-        font-size: 22px !important;
-    }
-
-    .save-btn {
-        height: 70px !important;
-        font-size: 28px !important;
-    }
-}
-
-@media (max-width: 992px) {
-    .content-wrapper {
-        flex-direction: column;
-        align-items: center;
-        gap: 40px;
-    }
-
-    .circle-element {
-        width: 250px;
-        height: 250px;
-    }
-
-    .main-form {
-        width: 100%;
-        max-width: 600px;
-    }
+.form-card .ant-btn-dangerous:hover {
+	background-color: #ffe0e0;
+	color: #c53a3f;
+	transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {
-    .content-wrapper {
-        padding: 60px 20px;
-    }
+	.profile-container {
+		padding: 24px 16px;
+	}
 
-    .form-card {
-        padding: 20px;
-    }
+	.profile-section {
+		flex-direction: column;
+		align-items: center;
+		gap: 28px;
+	}
 
-    .form-field {
-        margin-bottom: 25px;
-    }
+	.form-card {
+		padding: 24px 20px;
+	}
 
-    .form-field .ant-form-item-label > label {
-        font-size: 22px;
-        line-height: 30px;
-    }
+	.circle-element {
+		width: 120px;
+		height: 120px;
+	}
 
-    .form-field .ant-input {
-        height: 55px !important;
-        font-size: 18px !important;
-        padding: 0 15px !important;
-    }
-
-    .save-btn {
-        height: 55px !important;
-        font-size: 22px !important;
-    }
-}
-
-@media (max-width: 576px) {
-    .circle-element {
-        width: 180px;
-        height: 180px;
-    }
-
-    .form-field .ant-form-item-label > label {
-        font-size: 18px;
-        line-height: 24px;
-    }
-
-    .form-field .ant-input {
-        height: 45px !important;
-        font-size: 16px !important;
-    }
-
-    .save-btn {
-        height: 45px !important;
-        font-size: 18px !important;
-    }
+	.form-card h2 {
+		font-size: 24px;
+		margin-bottom: 20px;
+	}
 }
